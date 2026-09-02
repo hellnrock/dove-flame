@@ -1,0 +1,943 @@
+/*
+Theme Name: Astra Child
+Theme URI: https://nox.hellnrock.com
+Description: Tema hijo oficial de NOX — Puro Mexa Flow (HellNRock Media)
+Author: HellNRock Media
+Author URI: https://hellnrock.com
+Template: astra
+Version: 1.1.0
+*/
+
+/* ==========================================================================
+   NOX 1.1 — tokens
+   Pegar este archivo en wp-content/themes/astra-child/style.css
+   ========================================================================== */
+
+:root {
+  --nox-bg: #08080f;
+  --nox-bg-elevated: #0c0e18;
+  --nox-surface: #12141f;
+  --nox-surface-hover: #171a27;
+  --nox-border: #1f2333;
+  --nox-border-soft: #191c2b;
+  --nox-text: #f2f4f7;
+  --nox-muted: #a8b0c0;
+  --nox-dim: #6f7787;
+  --nox-accent: #00d4ce;
+  --nox-accent-hover: #3ee8e2;
+  --nox-accent-pressed: #009f9b;
+  --nox-accent-dim: rgba(0, 212, 206, 0.12);
+  --nox-accent-glow: rgba(0, 212, 206, 0.28);
+  --nox-on-accent: #08080f;
+  --nox-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+  --nox-shadow-hero: 0 16px 48px rgba(0, 0, 0, 0.55);
+  --nox-radius-xs: 4px;
+  --nox-radius-sm: 6px;
+  --nox-radius-md: 10px;
+  --nox-radius-lg: 14px;
+  --nox-font: "Chakra Petch", sans-serif;
+  --nox-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --nox-fast: 180ms;
+  --nox-med: 280ms;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+html {
+  scrollbar-color: var(--nox-border) var(--nox-bg);
+}
+
+html,
+body,
+#page,
+.site-content,
+.ast-separate-container {
+  background-color: var(--nox-bg) !important;
+  color: var(--nox-muted);
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: var(--nox-font);
+}
+
+::selection {
+  background-color: var(--nox-accent);
+  color: var(--nox-on-accent);
+}
+
+a {
+  color: var(--nox-accent);
+  text-decoration: none;
+  transition: color var(--nox-fast) var(--nox-ease);
+}
+
+a:hover {
+  color: var(--nox-accent-hover);
+}
+
+:focus-visible {
+  outline: 2px solid var(--nox-accent);
+  outline-offset: 3px;
+}
+
+.site-logo-img img,
+.custom-logo-link img,
+.nox-logo-img,
+.transparent-custom-logo img {
+  filter: none !important;
+}
+
+/* ==========================================================================
+   Header — dos franjas (logo / menú)
+   No pintar header/masthead de un solo color: aplasta el above-header.
+   ========================================================================== */
+
+.ast-above-header-bar,
+.ast-above-header.ast-above-header-bar,
+.ast-header-break-point .ast-above-header-bar {
+  background-color: var(--nox-bg) !important;
+  background-image: none !important;
+  border-bottom: 0 !important;
+}
+
+.ast-below-header-bar,
+.ast-header-break-point .ast-below-header-bar,
+.ast-primary-header-bar,
+.main-header-bar {
+  background-color: var(--nox-surface) !important;
+  background-image: none !important;
+  border-top: 1px solid var(--nox-border) !important;
+  border-bottom: 1px solid var(--nox-accent) !important;
+}
+
+.site-branding,
+.ast-site-identity,
+.custom-logo-link {
+  display: flex;
+  align-items: center;
+  visibility: visible;
+  opacity: 1;
+}
+
+.custom-logo-link img,
+.site-branding img {
+  width: auto;
+  max-height: 56px;
+  display: block;
+}
+
+.site-description:nth-of-type(2),
+.header-widget-area,
+.site-branding .site-description + .site-description {
+  display: none !important;
+}
+
+/* Astra deja 241px de min-height en el above-header mobile. Sobran. */
+@media (max-width: 544px) {
+  .ast-mobile-header-wrap .ast-above-header-bar,
+  .ast-above-header-bar .site-above-header-wrap {
+    min-height: 0 !important;
+  }
+}
+
+/* ==========================================================================
+   Bloque de marca (HTML del header builder)
+   ========================================================================== */
+
+.nox-header-block {
+  text-align: center;
+  padding: 18px 12px 14px;
+  width: 100%;
+}
+
+.nox-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.nox-logo-img {
+  display: block !important;
+  width: 200px !important;
+  max-width: min(200px, 70vw) !important;
+  height: auto !important;
+  margin: 0 auto !important;
+}
+
+.nox-main-slogan {
+  color: var(--nox-accent) !important;
+  font-size: clamp(0.92rem, 1.4vw, 1.12rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin: 6px 0 4px !important;
+  line-height: 1.3;
+  text-shadow: 0 0 18px var(--nox-accent-glow);
+}
+
+.nox-sub-description {
+  color: var(--nox-dim) !important;
+  font-size: 0.88rem !important;
+  margin: 0 !important;
+  letter-spacing: 0.02em;
+}
+
+/* ==========================================================================
+   Navegación
+   ========================================================================== */
+
+.main-header-menu .menu-link,
+.ast-builder-menu .main-navigation .menu-link,
+.main-navigation a {
+  color: var(--nox-muted) !important;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.82rem;
+  transition: color var(--nox-fast) var(--nox-ease), background-color var(--nox-fast) var(--nox-ease);
+}
+
+.main-header-menu .menu-link:hover,
+.main-header-menu .menu-link:focus-visible,
+.main-navigation a:hover,
+.ast-builder-menu .main-navigation .menu-item:hover > .menu-link {
+  color: var(--nox-accent) !important;
+  background-color: transparent !important;
+}
+
+.main-header-menu .current-menu-item > .menu-link,
+.main-header-menu .current-menu-ancestor > .menu-link {
+  color: var(--nox-accent) !important;
+}
+
+@media (min-width: 922px) {
+  .ast-desktop .main-header-menu > .menu-item {
+    border-right: 1px solid var(--nox-border-soft);
+  }
+
+  .ast-desktop .main-header-menu > .menu-item:first-child {
+    border-left: 1px solid var(--nox-border-soft);
+  }
+
+  .main-header-menu .sub-menu {
+    background-color: var(--nox-surface) !important;
+    border: 1px solid var(--nox-border);
+    border-top: 2px solid var(--nox-accent);
+    box-shadow: var(--nox-shadow);
+    padding: 6px 0;
+  }
+
+  .main-header-menu .sub-menu .menu-link {
+    color: var(--nox-muted) !important;
+    letter-spacing: 0.1em;
+  }
+
+  .main-header-menu .sub-menu .menu-link:hover {
+    color: var(--nox-accent) !important;
+    background-color: var(--nox-accent-dim) !important;
+  }
+}
+
+.menu-toggle,
+.ast-mobile-menu-trigger-outline {
+  color: var(--nox-accent) !important;
+  border-color: var(--nox-border) !important;
+  background: transparent !important;
+}
+
+.ast-mobile-header-content,
+.ast-mobile-popup-content,
+.ast-header-break-point .main-header-bar-navigation {
+  background-color: var(--nox-bg) !important;
+}
+
+.ast-header-break-point .main-header-menu .menu-link {
+  border-bottom: 1px solid var(--nox-border);
+  color: var(--nox-muted) !important;
+}
+
+/* ==========================================================================
+   Tarjetas — UN solo recubrimiento
+   (el 1.0 pintaba article + .inside-article + .widget a la vez)
+   ========================================================================== */
+
+.ast-separate-container .ast-article-post,
+.ast-separate-container .ast-article-single,
+.ast-separate-container .error-404 {
+  background-color: var(--nox-surface) !important;
+  border: 1px solid var(--nox-border) !important;
+  border-radius: var(--nox-radius-md) !important;
+  box-shadow: var(--nox-shadow);
+  overflow: hidden;
+  margin-bottom: 22px !important;
+  padding: 0 !important;
+  transition:
+    transform var(--nox-fast) var(--nox-ease),
+    border-color var(--nox-fast) var(--nox-ease),
+    box-shadow var(--nox-fast) var(--nox-ease);
+}
+
+.ast-article-post .inside-article,
+.ast-article-single .inside-article,
+.ast-article-post .ast-article-inner,
+.ast-article-single .ast-article-inner {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.ast-article-post .post-content,
+.ast-article-single .entry-content,
+.ast-article-post .blog-layout-5 .post-content {
+  padding: 22px 24px 24px;
+}
+
+.ast-no-thumb > .ast-blog-featured-section,
+.ast-no-thumb > .post-thumb {
+  display: none;
+}
+
+.blog-layout-5.ast-no-thumb .post-content {
+  width: 100% !important;
+  max-width: 100% !important;
+  flex: 1 1 100%;
+}
+
+.ast-article-post .post-thumb img,
+.ast-article-post .wp-post-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .blog .ast-article-post:hover,
+  .archive .ast-article-post:hover,
+  .search .ast-article-post:hover {
+    border-color: var(--nox-accent) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55), 0 0 0 1px var(--nox-accent-glow);
+  }
+}
+
+/* ==========================================================================
+   Tipografía editorial
+   ========================================================================== */
+
+.entry-title,
+.entry-title a,
+.ast-archive-title,
+.page-title,
+.widget-title,
+#secondary .wp-block-heading {
+  color: var(--nox-text) !important;
+  font-weight: 700 !important;
+}
+
+.entry-title {
+  font-size: clamp(1.2rem, 1.6vw, 1.55rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin: 8px 0 10px;
+}
+
+.entry-title a:hover {
+  color: var(--nox-accent) !important;
+}
+
+.cat-links,
+.cat-links a,
+.ast-taxonomy-container a,
+.badge {
+  color: var(--nox-accent) !important;
+  font-weight: 700 !important;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.entry-meta,
+.entry-meta span,
+.posted-on,
+.posted-on a,
+time {
+  color: var(--nox-dim) !important;
+  font-weight: 500 !important;
+}
+
+.entry-meta .author,
+.entry-meta .author a,
+.entry-meta .fn,
+.entry-meta .byline,
+.author-name {
+  color: var(--nox-accent) !important;
+}
+
+.entry-content p,
+.entry-summary,
+.entry-summary p,
+.ast-excerpt-container {
+  color: var(--nox-muted);
+}
+
+.entry-content h1,
+.entry-content h2,
+.entry-content h3,
+.entry-content h4,
+.entry-content h5,
+.entry-content h6 {
+  color: var(--nox-text);
+}
+
+.read-more a,
+.ast-read-more {
+  color: var(--nox-accent);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+
+/* ==========================================================================
+   Sidebar / widgets
+   ========================================================================== */
+
+#secondary .widget {
+  background-color: var(--nox-surface) !important;
+  border: 1px solid var(--nox-border) !important;
+  border-radius: var(--nox-radius-md) !important;
+  box-shadow: var(--nox-shadow);
+  padding: 18px 18px 16px !important;
+  margin-bottom: 18px !important;
+}
+
+#secondary .widget:has(.instagram-media),
+#secondary .widget:has(iframe) {
+  padding: 10px !important;
+  overflow: hidden;
+}
+
+#secondary .widget-title,
+#secondary .wp-block-heading {
+  font-size: 0.95rem !important;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--nox-border);
+  padding-bottom: 10px;
+  margin: 0 0 14px;
+}
+
+#secondary .wp-block-latest-posts a,
+#secondary .wp-block-latest-comments a {
+  color: var(--nox-muted);
+}
+
+#secondary .wp-block-latest-posts a:hover,
+#secondary .wp-block-latest-comments a:hover {
+  color: var(--nox-accent);
+}
+
+#secondary .wp-block-latest-posts li {
+  border-bottom: 1px solid var(--nox-border);
+  padding: 8px 0;
+}
+
+#secondary .wp-block-latest-posts li:last-child {
+  border-bottom: 0;
+}
+
+.instagram-media {
+  min-width: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* Comentarios recientes traen <article> — no deben parecer tarjeta de post */
+#secondary .wp-block-latest-comments article,
+#secondary .widget article {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+
+/* ==========================================================================
+   Buscador (Gutenberg usa .wp-block-search__input, no .search-field)
+   ========================================================================== */
+
+.wp-block-search__inside-wrapper,
+.widget_search form,
+.search-form {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.wp-block-search__label {
+  color: var(--nox-text);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.wp-block-search__input,
+.widget_search .search-field,
+.search-form .search-field,
+input[type="search"] {
+  background-color: var(--nox-bg) !important;
+  color: var(--nox-text) !important;
+  border: 1px solid var(--nox-border) !important;
+  border-radius: var(--nox-radius-sm) !important;
+  min-height: 44px;
+  padding: 8px 12px !important;
+  flex: 1;
+  width: 100%;
+}
+
+.wp-block-search__input::placeholder,
+input[type="search"]::placeholder {
+  color: var(--nox-dim);
+}
+
+.wp-block-search__input:focus,
+.widget_search .search-field:focus,
+input[type="search"]:focus {
+  border-color: var(--nox-accent) !important;
+  outline: none;
+  box-shadow: 0 0 0 3px var(--nox-accent-dim);
+}
+
+.wp-block-search__button,
+.wp-element-button,
+.ast-button,
+.ast-custom-button,
+button[type="submit"],
+input[type="submit"],
+.search-submit {
+  background-color: var(--nox-accent) !important;
+  color: var(--nox-on-accent) !important;
+  border: 0 !important;
+  border-radius: var(--nox-radius-sm) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  min-height: 44px;
+  padding: 8px 16px !important;
+  cursor: pointer;
+  transition: background-color var(--nox-fast) var(--nox-ease), transform var(--nox-fast) var(--nox-ease);
+}
+
+.wp-block-search__button:hover,
+.wp-element-button:hover,
+.ast-button:hover,
+button[type="submit"]:hover,
+input[type="submit"]:hover {
+  background-color: var(--nox-accent-hover) !important;
+  color: var(--nox-on-accent) !important;
+}
+
+.wp-element-button:active,
+.ast-button:active {
+  background-color: var(--nox-accent-pressed) !important;
+  transform: translateY(1px);
+}
+
+/* ==========================================================================
+   Formularios, Gutenberg, comentarios, paginación
+   ========================================================================== */
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="number"],
+textarea,
+select,
+.comment-form input,
+.comment-form textarea {
+  background-color: var(--nox-bg);
+  color: var(--nox-text);
+  border: 1px solid var(--nox-border);
+  border-radius: var(--nox-radius-sm);
+  min-height: 44px;
+  padding: 8px 12px;
+}
+
+textarea {
+  min-height: 120px;
+}
+
+blockquote,
+.wp-block-quote {
+  border-left: 3px solid var(--nox-accent);
+  background: var(--nox-bg);
+  color: var(--nox-muted);
+  padding: 14px 18px;
+  margin: 1.4em 0;
+  border-radius: 0 var(--nox-radius-sm) var(--nox-radius-sm) 0;
+}
+
+pre,
+code,
+.wp-block-code,
+.wp-block-preformatted {
+  background: var(--nox-bg);
+  color: var(--nox-accent);
+  border-radius: var(--nox-radius-sm);
+}
+
+.wp-block-separator {
+  border-color: var(--nox-border);
+}
+
+.wp-block-image img,
+.entry-content img {
+  border-radius: var(--nox-radius-sm);
+}
+
+.wp-element-caption,
+.wp-caption-text {
+  color: var(--nox-dim);
+  font-size: 0.85rem;
+}
+
+.tagcloud a {
+  display: inline-block;
+  border: 1px solid var(--nox-border);
+  color: var(--nox-muted) !important;
+  border-radius: 999px;
+  padding: 4px 10px;
+  margin: 0 6px 8px 0;
+  line-height: 1.4;
+}
+
+.tagcloud a:hover,
+.tagcloud a:focus {
+  background-color: var(--nox-accent) !important;
+  color: var(--nox-on-accent) !important;
+  border-color: var(--nox-accent);
+}
+
+.ast-pagination .page-numbers,
+.nav-links .page-numbers,
+.page-links .page-link {
+  background: var(--nox-surface);
+  border: 1px solid var(--nox-border);
+  color: var(--nox-muted) !important;
+  border-radius: var(--nox-radius-sm);
+  min-width: 40px;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ast-pagination .page-numbers.current,
+.ast-pagination .page-numbers:hover,
+.page-links .page-link:hover {
+  background: var(--nox-accent) !important;
+  color: var(--nox-on-accent) !important;
+  border-color: var(--nox-accent);
+}
+
+#comments,
+.ast-comment-list .ast-comment,
+.comment-respond {
+  background: var(--nox-surface);
+  border: 1px solid var(--nox-border);
+  border-radius: var(--nox-radius-md);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+#ast-scroll-top {
+  background: var(--nox-accent) !important;
+  color: var(--nox-on-accent) !important;
+  border-radius: 50%;
+}
+
+table,
+.wp-block-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  border: 1px solid var(--nox-border);
+  padding: 10px 12px;
+}
+
+table th {
+  background: var(--nox-bg);
+  color: var(--nox-text);
+}
+
+/* ==========================================================================
+   Footer
+   WP mete <br> por wpautop. Se ocultan y el flex los alinea.
+   ========================================================================== */
+
+.site-footer,
+.site-below-footer-wrap,
+.ast-footer-copyright {
+  background-color: var(--nox-bg) !important;
+  color: var(--nox-dim);
+  border-top: 1px solid var(--nox-border);
+}
+
+.nox-footer-credits {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 10px;
+  width: 100%;
+  padding: 18px 16px;
+  font-size: 13px;
+  color: var(--nox-muted);
+  white-space: normal;
+}
+
+.nox-footer-credits br {
+  display: none;
+}
+
+.nox-footer-credits .nox-cat {
+  color: var(--nox-accent);
+  font-size: 14px;
+}
+
+.nox-footer-credits .nox-separator {
+  color: var(--nox-accent);
+  opacity: 0.7;
+}
+
+.nox-footer-credits .nox-link {
+  color: var(--nox-accent);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.nox-footer-credits .nox-link:hover {
+  text-decoration: underline;
+  color: var(--nox-accent-hover);
+}
+
+/* HTML recomendado (sin saltos de línea entre tags, para que WP no inserte <br>):
+<div class="nox-footer-credits"><i class="fa-solid fa-cat nox-cat" aria-hidden="true"></i><span class="nox-copyright">© 2026 NOX. Todos los derechos reservados.</span><span class="nox-separator" aria-hidden="true">|</span><span class="nox-powered">Powered by</span><a class="nox-link" href="https://hellnrock.com" target="_blank" rel="noopener noreferrer">HellNRock.com</a></div>
+*/
+
+/* ==========================================================================
+   Hero gallery
+   ========================================================================== */
+
+.nox-hero-gallery {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  height: 460px;
+  margin: 8px auto 28px;
+  overflow: hidden;
+  border-radius: var(--nox-radius-lg);
+  border: 1px solid var(--nox-border);
+  background-color: var(--nox-bg);
+  box-shadow: var(--nox-shadow-hero);
+}
+
+.nox-hero-slides {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.nox-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--nox-med) var(--nox-ease), visibility var(--nox-med) var(--nox-ease);
+  z-index: 1;
+}
+
+.nox-slide.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+}
+
+.nox-slide img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+.nox-hero-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 48px 28px 56px;
+  background: linear-gradient(
+    0deg,
+    rgba(8, 8, 15, 0.96) 0%,
+    rgba(8, 8, 15, 0.45) 58%,
+    rgba(8, 8, 15, 0) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.nox-hero-overlay a,
+.nox-hero-overlay button {
+  pointer-events: auto;
+}
+
+.nox-hero-badge {
+  background-color: var(--nox-accent);
+  color: var(--nox-on-accent);
+  font-weight: 800;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  padding: 4px 10px;
+  border-radius: var(--nox-radius-xs);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.nox-hero-title {
+  color: var(--nox-text);
+  font-size: clamp(1.25rem, 2.4vw, 2rem);
+  font-weight: 700;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
+  margin: 0;
+  line-height: 1.2;
+  max-width: min(40rem, 92%);
+}
+
+.nox-hero-prev,
+.nox-hero-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(18, 20, 31, 0.78);
+  color: var(--nox-accent);
+  border: 1px solid var(--nox-border);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 50%;
+  transition:
+    background-color var(--nox-fast) var(--nox-ease),
+    color var(--nox-fast) var(--nox-ease),
+    border-color var(--nox-fast) var(--nox-ease);
+}
+
+.nox-hero-prev:hover,
+.nox-hero-next:hover {
+  background: var(--nox-accent);
+  color: var(--nox-on-accent);
+  border-color: var(--nox-accent);
+}
+
+.nox-hero-prev {
+  left: 14px;
+}
+
+.nox-hero-next {
+  right: 14px;
+}
+
+.nox-hero-dots {
+  position: absolute;
+  bottom: 16px;
+  right: 20px;
+  z-index: 4;
+  display: flex;
+  gap: 8px;
+}
+
+.nox-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.32);
+  cursor: pointer;
+  transition: width var(--nox-fast) var(--nox-ease), background-color var(--nox-fast) var(--nox-ease), border-radius var(--nox-fast) var(--nox-ease);
+}
+
+.nox-dot.active {
+  background: var(--nox-accent);
+  width: 22px;
+  border-radius: 99px;
+}
+
+@media (max-width: 768px) {
+  .nox-hero-gallery {
+    height: 300px;
+    border-radius: var(--nox-radius-md);
+    margin-bottom: 20px;
+  }
+
+  .nox-hero-title {
+    max-width: 100%;
+  }
+
+  .nox-hero-overlay {
+    padding: 28px 18px 48px;
+  }
+
+  .nox-logo-img {
+    width: 156px !important;
+  }
+
+  .nox-header-block {
+    padding: 12px 8px 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ast-article-post,
+  .nox-slide,
+  .nox-hero-prev,
+  .nox-hero-next,
+  .nox-dot,
+  a,
+  .menu-link,
+  .wp-element-button {
+    transition: none !important;
+  }
+}
